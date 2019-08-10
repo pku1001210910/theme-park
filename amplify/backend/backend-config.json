@@ -1,0 +1,9 @@
+{
+    "auth": {
+        "themeparkapp5a54c463": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
+        }
+    }
+}
