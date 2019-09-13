@@ -21,6 +21,7 @@
 </template>
 
 <script>
+const axios = require('axios')
 export default {
   name: 'Ride',
   data () {
@@ -73,11 +74,36 @@ export default {
           return alert('Wrong file type - JPG only.')
         }
         if (e.target.result.length > MAX_IMAGE_SIZE) {
-          return alert('Image is loo large - 1Mb maximum')
+          return alert('Image is loo large - 5Mb maximum')
         }
         this.image = e.target.result
+        this.uploadImage()
       }
       reader.readAsDataURL(file)
+    },
+    uploadImage: async function () {
+      const API_ENDPOINT = 'https://77iz7yeqw7.execute-api.us-west-2.amazonaws.com/Prod/'
+      // Get the presigned URL
+      const response = await axios({
+        method: 'GET',
+        url: API_ENDPOINT
+      })
+      console.log('Response: ', response.data)
+      console.log('Uploading: ', this.image)
+      let binary = atob(this.image.split(',')[1])
+      let array = []
+      for (var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i))
+      }
+      let blobData = new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+      console.log('Uploading to: ', response.data.uploadURL)
+      const result = await fetch(response.data.uploadURL, {
+        method: 'PUT',
+        body: blobData
+      })
+      console.log('Result: ', result)
+      // Final URL for the user doesn't need the query string params
+      this.uploadURL = response.data.uploadURL.split('?')[0]
     }
   },
   computed: {
@@ -94,7 +120,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 img {
   width: 80%;
   margin: auto;
