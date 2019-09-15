@@ -5,13 +5,8 @@
 <script>
   const AWS = require('aws-sdk')
   const AWSIoTData = require('aws-iot-device-sdk')
-
-  const AWSConfiguration = {
-    poolId: 'us-east-1:d5dc8a12-3bc5-4152-aa92-a8267fc24359', // 'YourCognitoIdentityPoolId'
-    host: 'au33be31eziux-ats.iot.us-east-1.amazonaws.com', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
-    region: 'us-east-1' // 'YourAwsRegion', e.g. 'us-east-1'
-  }
-  const ridesTopic = 'serverless-zoo-rides'
+  const ridesTopic = 'theme-park-rides'
+  const alertsTopic = 'theme-park-alerts'
 
   export default {
     name: 'IoT',
@@ -21,11 +16,16 @@
       }
     },
     mounted: function () {
-      console.log('IoT mounted')
+      // For the workshop, if this isn't in the config, the user has not
+      // attemped this module yet, so hide the feature.
 
+      if (this.$appConfig.iot.poolId === '') return
+      const AWSConfiguration = this.$appConfig.iot
+
+      console.log('IoT mounted')
       const _store = this.$store
 
-      const clientId = 'serverless-zoo-client-' + (Math.floor((Math.random() * 100000) + 1))
+      const clientId = 'theme-park-client-' + (Math.floor((Math.random() * 100000) + 1))
       AWS.config.region = AWSConfiguration.region
 
       AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -72,7 +72,7 @@
       mqttClient.on('connect', function () {
         console.log('mqttClient connected')
         mqttClient.subscribe(ridesTopic)
-        mqttClient.subscribe('parkAlert')
+        mqttClient.subscribe(alertsTopic)
       })
 
       mqttClient.on('error', function (err) {
@@ -81,12 +81,18 @@
       })
 
       mqttClient.on('message', function (topic, payload) {
-        console.log(payload.toString())
         const msg = JSON.parse(payload.toString())
-        console.log('IoT::onMessage: ', msg)
-        if (topic === 'parkAlert') _store.commit('setParkAlert', msg)
+        console.log('Message: ', msg)
+        console.log('IoT::onMessage: ', topic)
+        if (topic === alertsTopic) {
+          console.log('Message: ', msg)
+          _store.commit('setParkAlert', msg)
+          return
+        }
         // ride updates use the ridesTopic
-        if (topic === ridesTopic) _store.commit('updateRideTimes', msg)
+        if (topic === ridesTopic) {
+          _store.commit('updateRideTimes', msg)
+        }
       })
     }
   }

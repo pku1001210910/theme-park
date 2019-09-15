@@ -29,7 +29,7 @@ const mutations = {
     state.initialized = true
   },
   setParkAlert (state, parkAlert) {
-    console.log('Park Alert! ', parkAlert)
+    console.log('Park alert: ', parkAlert)
     state.parkAlert = parkAlert
   },
   addRide (state, ride) {

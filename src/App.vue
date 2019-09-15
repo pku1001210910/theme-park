@@ -23,34 +23,37 @@ export default {
   methods: {
     addLocations: function (locations) {
       locations.map(location => {
-        const key = location.sortKey.S.split('-')[0]
+        // Don't process items that aren't locations
+        if (location.partitionKey !== 'locations') return
+        const key = location.sortKey.split('-')[0]
         switch (key) {
-          // Restrooms
+          // Facilities
           case 'facility':
             this.$store.commit('addFacility', {
-              id: location.sortKey.S,
-              name: location.name.S,
-              lat: location.map.M.lat.N,
-              lng: location.map.M.lng.N,
-              type: location.type.S
+              id: location.sortKey,
+              name: location.name,
+              lat: JSON.parse(location.map).lat.N,
+              lng: JSON.parse(location.map).lng.N,
+              type: location.type
             })
             break
           // Rides
           case 'ride':
-            this.$store.commit('addRide', {
-              id: location.sortKey.S,
-              name: location.name.S,
-              lat: location.map.M.lat.N,
-              lng: location.map.M.lng.N,
-              thumbnail: location.thumbnail.S,
-              image: location.image.S,
+            const ride = {
+              id: location.sortKey,
+              name: location.name,
+              lat: JSON.parse(location.map).lat.N,
+              lng: JSON.parse(location.map).lng.N,
+              thumbnail: location.thumbnail,
+              image: location.image,
               wait: null,
               inService: null,
               info: {
-                description: location.info.M.description.S,
-                area: location.info.M.area.S
+                description: JSON.parse(location.info).description.S,
+                area: JSON.parse(location.info).area.S
               }
-            })
+            }
+            this.$store.commit('addRide', ride)
             break
         }
         this.$store.commit('setInitialized')
@@ -59,9 +62,13 @@ export default {
   },
   mounted: async function () {
     try {
-      const results = await axios.get(this.$appConfig.api.locationsURL)
-      console.log('ParkMap: ', results)
-      this.addLocations(results.data.Items)
+      // For the workshop, if this isn't in the config, the user has not
+      // attemped this module yet, so hide the feature.
+
+      if (this.$appConfig.api.locationsURL === '') return
+      const response = await axios.get(this.$appConfig.api.locationsURL)
+      console.log('ParkMap: ', response)
+      this.addLocations(response.data.result.Items)
     } catch (err) {
       console.error(err)
     }

@@ -1,6 +1,6 @@
 {
-  "name": "theme-park-app",
-  "short_name": "theme-park-app",
+  "name": "Inventor Island Map",
+  "short_name": "inventor-island",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",

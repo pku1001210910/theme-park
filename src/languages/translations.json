@@ -1,0 +1,118 @@
+{
+  "en": {
+    "message": {
+      "hello": "hello world"
+    },
+    "words": {
+      "mins": "mins"
+    },
+    "phrases": {
+      "addPhoto": "Add ride photo"
+    },
+    "rideDescriptions": {
+      "null": "Loading...",
+      "ride-001": "The coaster will reach 109 feet at its tallest peak and send riders through 16 airtime hills. Mystic Timbers is themed as an abandoned lumber mill and is expected to end in a grand special effects finale in a mysterious shed covered in vines.",
+      "ride-002": "Williamsburg’s first wooden roller coaster is actually more of a hybrid. The ride is a “hybrid wooden coaster with steel supports” that sends riders down a 74-foot drop and over nine air-time hills. The ride, which is themed after a Viking invasion, can reach up to 48 miles per hour.",
+      "ride-003": "For those who like a bit of education with their attractions, Pier 39’s newest ride will take visitors on a tour of San Francisco. The Flyer is a “28-seat flying theater” that will take guests over the San Francisco skyline, across the Golden Gate Bridge and onto Alcatraz Island using a massive movie screen and 3-D tech."
+    },
+    "photoUploaded": {
+      "title": "Photo Uploaded.",
+      "text": "We're processing your photo. You'll receive an alert when it's ready."
+    },
+    "photoProcessed": {
+      "title": "Photo Ready!",
+      "text": "Your new photo is ready to view in the gallery."
+    },
+    "errors": {
+      "photoWrongType": "Wrong file type - JPG only.",
+      "photoTooLarge": "Image is loo large - 5Mb maximum."
+    }
+  },
+  "fr": {
+    "message": {
+      "hello": "bonjour le monde"
+    },
+    "words": {
+      "mins": "minutes"
+    },
+    "phrases": {
+      "addPhoto": "Ajouter une photo de trajet"
+    },
+    "rideDescriptions": {
+      "null": "Chargement...",
+      "ride-001": "Le dessous de verre atteindra 109 pieds à son sommet le plus haut et enverra les coureurs à travers 16 collines de temps d'antenne. Mystic Timbers est un moulin à bois abandonné et devrait se terminer par une finale d'effets spéciaux dans un mystérieux hangar couvert de vignes.",
+      "ride-002": "La première montagne russe en bois de Williamsburg est en fait plus un hybride. Le tour est un « dessous de verre hybride en bois avec des supports en acier » qui envoie les coureurs sur une descente de 74 pieds et plus de neuf collines aériennes. Le trajet, qui est sur le thème d'une invasion viking, peut atteindre jusqu'à 48 miles à l'heure.",
+      "ride-003": "Pour ceux qui aiment un peu d'éducation avec leurs attractions, le nouveau trajet du Pier 39 emmènera les visiteurs sur une visite de San Francisco. Le Flyer est un « théâtre volant de 28 places » qui emmènera les invités sur les toits de San Francisco, sur le Golden Gate Bridge et sur l'île d'Alcatraz à l'aide d'un écran de cinéma massif et d'une technologie 3D."
+    },
+    "photoUploaded": {
+      "title": "Photo téléchargée.",
+      "text": "Nous traitons votre photo. Vous recevrez une alerte quand elle sera prête."
+    },
+    "photoProcessed": {
+      "title": "Photo Prêt !",
+      "text": "Votre nouvelle photo est prête à être vue dans la galerie."
+    },
+    "errors": {
+      "photoWrongType": "Type de fichier incorrect - JPG uniquement.",
+      "photoTooLarge": "L'image est grande - 5Mo maximum."
+    }
+  },
+  "es": {
+    "message": {
+      "hello": "hola mundo"
+    },
+    "words": {
+      "mins": "minutos"
+    },
+    "phrases": {
+      "addPhoto": "Añadir foto de paseo"
+    },
+    "rideDescriptions": {
+      "null": "Cargando...",
+      "ride-001": "La montaña rusa alcanzará los 109 pies en su pico más alto y enviará a los ciclistas a través de 16 colinas de tiempo de emisión. Mystic Timbers tiene la temática de un molino de madera abandonado y se espera que termine en un gran final de efectos especiales en un misterioso cobertizo cubierto de vides.",
+      "ride-002": "La primera montaña rusa de madera de Williamsburg es en realidad más bien un híbrido. El paseo es un «montaña rusa híbrida de madera con soportes de acero» que envía a los ciclistas por una caída de 74 pies y más de nueve colinas de tiempo aéreo. El viaje, que está inspirado después de una invasión vikinga, puede alcanzar hasta 48 millas por hora.",
+      "ride-003": "Para aquellos que les gusta un poco de educación con sus atracciones, el paseo más nuevo del Pier 39 llevará a los visitantes a un recorrido por San Francisco. The Flyer es un «teatro volador de 28 plazas» que llevará a los huéspedes sobre el horizonte de San Francisco, cruzando el puente Golden Gate y hasta la isla de Alcatraz utilizando una pantalla de cine masiva y tecnología 3D."
+    },
+    "photoUploaded": {
+      "title": "Foto cargada.",
+      "text": "Estamos procesando tu foto. Recibirás una alerta cuando esté lista."
+    },
+    "photoProcessed": {
+      "title": "Photo Ready!",
+      "text": "Tu nueva foto está lista para ver en la galería."
+    },
+    "errors": {
+      "photoWrongType": "Tipo de archivo incorrecto: sólo JPG.",
+      "photoTooLarge": "La imagen es loo grande - 5Mb máximo."
+    }
+  },
+  "ja": {
+    "message": {
+      "hello": "ハローワールド"
+    },
+    "words": {
+      "mins": "分"
+    },
+    "phrases": {
+      "addPhoto": "乗車写真を追加"
+    },
+    "rideDescriptions": {
+      "null": "ロード中...",
+      "ride-001": "コースターは、その最も高いピークで109フィートに達し、16の放送時間の丘を通ってライダーを送ります。 ミスティックティンバーズは、放棄された木材工場としてテーマにされ、ブドウで覆われた神秘的な小屋で壮大な特殊効果フィナーレで終わることが期待されています。",
+      "ride-002": "ウィリアムズバーグ初の木製ジェットコースターは、実際にはハイブリッドです。 乗車は、74フィートのドロップと9以上の放送時間の丘を下ってライダーを送信する「スチールサポート付きハイブリッド木製コースター」です。 バイキングの侵略をテーマにした乗り心地は、1時間あたり最大48マイルに達することができます。",
+      "ride-003": "彼らのアトラクションで教育のビットが好きな人のために、ピア39の最新の乗車は、サンフランシスコのツアーで訪問者を連れて行きます。 ザ・フライヤーは、サンフランシスコのスカイライン、ゴールデンゲートブリッジの向こう側、そして巨大な映画スクリーンと3D技術を使用してアルカトラズ島にゲストを連れて行く「28席の飛行劇場」です。"
+    },
+    "photoUploaded": {
+      "title": "写真がアップロードされました。",
+      "text": "写真を処理しています。 準備ができたらアラートが届きます。"
+    },
+    "photoProcessed": {
+      "title": "フォトレディ！",
+      "text": "新しい写真をギャラリーで表示する準備ができました。"
+    },
+    "errors": {
+      "photoWrongType": "ファイルタイプが間違っています-JPG のみ。",
+      "photoTooLarge": "画像は大きく、最大5Mbです。"
+    }
+  }
+}

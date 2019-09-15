@@ -13,12 +13,27 @@ export default {
     parkAlert () { return this.$store.getters.getParkAlert }
   },
   watch: {
-    parkAlert (msg) {
-      console.log('ParkAlert: ', msg)
+    // expected format:
+    // {
+    //  "title": string,
+    //  "text": string,
+    //  "type": string,
+    //  "confirmButtonText": string
+    // }
 
+    parkAlert (msg) {
+      console.log('ParkAlert: ', msg.level)
+      if (msg.level === 'info') {
+        msg.title = this.$t(`${msg.type}.title`)
+        msg.text = this.$t(`${msg.type}.text`)
+        msg.confirmButtonText = 'OK'
+        msg.confirmStyle = 'success'
+        msg.type = 'success'
+      }
+      console.log('ParkAlertx: ', msg)
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-          confirmButton: 'btn btn-danger'
+          confirmButton: `btn btn-${msg.confirmStyle}`
         },
         buttonsStyling: false
       })
