@@ -18,6 +18,9 @@ export const appConfig = {
     host: 'au33be31eziux-ats.iot.us-west-2.amazonaws.com', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
     region: 'us-west-2' // 'YourAwsRegion', e.g. 'us-east-1'
   },
+  initApi: {
+    url: 'https://5uglwghlde.execute-api.us-west-2.amazonaws.com/Prod/waitTimes/'
+  },
   // MODULE 4 - PHOTOS
   photos: {
     uploadURL: 'https://77iz7yeqw7.execute-api.us-west-2.amazonaws.com/Prod/',

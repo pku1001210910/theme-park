@@ -22,7 +22,6 @@ export default {
     // }
 
     parkAlert (msg) {
-      console.log('ParkAlert: ', msg.level)
       if (msg.level === 'info') {
         msg.title = this.$t(`${msg.type}.title`)
         msg.text = this.$t(`${msg.type}.text`)
@@ -30,7 +29,7 @@ export default {
         msg.confirmStyle = 'success'
         msg.type = 'success'
       }
-      console.log('ParkAlertx: ', msg)
+      console.log('ParkAlert: ', msg)
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: `btn btn-${msg.confirmStyle}`

@@ -69,6 +69,16 @@ export default {
       const response = await axios.get(this.$appConfig.api.locationsURL)
       console.log('ParkMap: ', response)
       this.addLocations(response.data.result.Items)
+
+      // Part c of the same module - provides instant wait times by
+      // initializing from the database.
+
+      if (this.$appConfig.initApi.url === '') return
+      const timesResponse = await axios.get(this.$appConfig.initApi.url)
+      console.log('InitWaitTimes: ', timesResponse)
+
+      const msg = timesResponse.data.result.Items[0].message
+      this.$store.commit('updateRideTimes', msg)
     } catch (err) {
       console.error(err)
     }
