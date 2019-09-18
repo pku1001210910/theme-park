@@ -45,6 +45,7 @@ export default {
     }
   },
   async mounted () {
+    if (this.$appConfig.photos.galleryURL === '') return
     const API_ENDPOINT = this.$appConfig.photos.galleryURL
     const response = await axios({
       method: 'GET',

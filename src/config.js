@@ -10,21 +10,21 @@
 export const appConfig = {
   // MODULE 2- BACKEND
   api: {
-    locationsURL: 'https://ec526y0ru1.execute-api.us-west-2.amazonaws.com/Prod/locations'
+    locationsURL: ''
   },
   // MODULE 3 - REALTIME
   iot: {
-    poolId: 'us-west-2:542ee385-41a9-4031-b18e-82b331b562fd', // 'YourCognitoIdentityPoolId'
-    host: 'au33be31eziux-ats.iot.us-west-2.amazonaws.com', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
+    poolId: '', // 'YourCognitoIdentityPoolId'
+    host: '', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
     region: 'us-west-2' // 'YourAwsRegion', e.g. 'us-east-1'
   },
   initApi: {
-    url: 'https://5uglwghlde.execute-api.us-west-2.amazonaws.com/Prod/waitTimes/'
+    url: ''
   },
   // MODULE 4 - PHOTOS
   photos: {
-    uploadURL: 'https://77iz7yeqw7.execute-api.us-west-2.amazonaws.com/Prod/',
-    galleryURL: 'https://8n85qqtn00.execute-api.us-west-2.amazonaws.com/Prod/photos/'
+    uploadURL: '',
+    galleryURL: ''
   },
   // STATIC - You don't need to modify anything below this comment.
   images: {
