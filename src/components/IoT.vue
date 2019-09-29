@@ -42,7 +42,7 @@
               IdentityId: AWS.config.credentials.identityId
             }
             cognitoIdentity.getCredentialsForIdentity(params, function (err, data) {
-              console.log('CREDS:', data)
+              console.log('Creds: ', data)
               if (!err) {
                 mqttClient.updateWebSocketCredentials(data.Credentials.AccessKeyId,
                   data.Credentials.SecretKey,
@@ -52,7 +52,7 @@
               }
             })
           } else {
-            console.log('error retrieving identity:' + err)
+            console.log('Error retrieving identity:' + err)
           }
         })
       }
@@ -69,17 +69,20 @@
         sessionToken: ''
       })
 
+      // When first connected, subscribe to the topics we are interested in.
       mqttClient.on('connect', function () {
         console.log('mqttClient connected')
         mqttClient.subscribe(ridesTopic)
         mqttClient.subscribe(alertsTopic)
       })
 
+      // Attempt to reconnect in the event of any error
       mqttClient.on('error', function (err) {
         console.log('mqttClient error:', err)
         getCreds()
       })
 
+      // A message has arrived - parse to determine topic
       mqttClient.on('message', function (topic, payload) {
         const msg = JSON.parse(payload.toString())
         console.log('Message: ', msg)

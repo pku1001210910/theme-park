@@ -1,6 +1,7 @@
 # theme-park-app
 
-> A Vue.js project
+> The Theme Park front-end application, written in Vue.js.
+> This code is managed by the AWS Serverless team. 
 
 ## Build Setup
 

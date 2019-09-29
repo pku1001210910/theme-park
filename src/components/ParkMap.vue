@@ -6,6 +6,7 @@
       :max-zoom="maxZoom"
       :max-bounds="maxBounds"
       :crs="crs"
+      touchExtend="false"
     >
       <!-- This is the theme park map background -->
       <l-image-overlay :url="url" :bounds="bounds" />
@@ -23,7 +24,6 @@
       <!-- List of rides markers -->
       <l-marker v-for="ride in rides" :lat-lng="ride" :key="ride.id">
         <l-icon :icon-anchor="[50, 30]">
-          <!-- <transition name="slide-fade" mode="out-in"> -->
             <div :key="ride.wait">
               <b-button variant="light" router-link :to="'/ride/' + ride.id">
                 <b-media>
@@ -34,7 +34,6 @@
                 </b-media>
               </b-button>
               </div>
-          <!-- </transition> -->
           </l-icon>
       </l-marker>
     </l-map>
@@ -70,10 +69,12 @@ export default {
   data () {
     return {
       url: this.$appConfig.images.parkMapURL,
-      bounds: [[0, 0], [867, 1300]],
-      minZoom: 0,
-      maxZoom: 2,
-      maxBounds: [[0, 0], [867, 1300]],
+      bounds: [[0, 0], [4500, 2625]],
+      minZoom: -1,
+      maxZoom: 0,
+      initZoom: -1,
+      maxBounds: [[0, 0], [4500, 2625]],
+      initLocation: [2800, 1000],
       crs: CRS.Simple,
       icons: this.$appConfig.icons
     }
@@ -95,24 +96,23 @@ export default {
     }
   },
   mounted: async function () {
-    this.$refs.map.mapObject.setView([400, 750], 0)
+    this.$refs.map.mapObject.setView(this.initLocation, this.initZoom)
     // this.$refs.map.mapObject.on('click', (event) => {
     //   console.log(event)
     // })
   }
 }
 </script>
-<style>
+<style scoped>
 @import "../../node_modules/leaflet/dist/leaflet.css";
 #map {
   height: calc(100vh - 65px); 
   width: 100%;
 }
-.slide-fade-enter-active .slide-fade-leave-active {
-  transition: opacity 3s;
+h6 {
+  font-size: 0.75rem !important
 }
-.slide-fade-enter, .slide-fade-leave-to
-{
-  opacity: 0;
-}  
+.btn-light {
+  border-color: #28a745 !important
+}
 </style>

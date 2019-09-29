@@ -24,16 +24,17 @@ export const appConfig = {
   // MODULE 4 - PHOTOS
   photos: {
     uploadURL: '',
-    galleryURL: ''
+    galleryURL: '',
+    finalBucketName: 'theme-park-photos-finalbucket-XXXXXXXX'
   },
-  // STATIC - You don't need to modify anything below this comment.
+  // STATIC - You don't need to change anything below this comment.
   images: {
-    parkMapURL: 'https://d1sjoqff4xix7z.cloudfront.net/images/theme-park-map.jpg'
+    parkMapURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-map-large.jpg',
+    logoURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-logo-150.png'
   },
   icons: {
-    restroom: 'https://d1sjoqff4xix7z.cloudfront.net/icons/generic/002-unisex-symbol.png',
-    dining: 'https://d1sjoqff4xix7z.cloudfront.net/icons/generic/073-wine-glasses.png',
-    atm: 'https://d1sjoqff4xix7z.cloudfront.net/icons/generic/078-dollar-bill.png',
-    shopping: 'https://d1sjoqff4xix7z.cloudfront.net/icons/generic/072-shopper-with-bags.png'
+    restroom: 'https://d15l97sovqpx31.cloudfront.net/icons/icon-restroom.png',
+    dining: 'https://d15l97sovqpx31.cloudfront.net/icons/icon-dining.png',
+    atm: 'https://d15l97sovqpx31.cloudfront.net/icons/icon-atm.png'
   }
 }

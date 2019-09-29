@@ -1,6 +1,6 @@
 <template>
   <div id="ride">
-    <b-card title="Your photo gallery"/>      
+    <b-card :title="$t('phrases.yourGallery')"/>      
                   
     <div>
       <gallery :images="images" :index="index" @close="index = null"></gallery>
@@ -12,12 +12,12 @@
         :style="{ backgroundImage: 'url(' + image + ')', width: '400px', height: '300px' }"
       >
         <social-sharing :url="image"
-                  title="I completed the AWS Serverless Theme Park Workshop!"
-                  description="Wow!"
-                  quote="Quote here"
-                  hashtags="aws serverless reInvent2019"
-                  twitter-user="jbesw"
-                  inline-template>
+          title="I completed the AWS Serverless Theme Park Workshop!"
+          description="Wow!"
+          quote="Me on Innovator Island"
+          hashtags="aws serverless reInvent2019"
+          twitter-user="jbesw"
+          inline-template>
           <div>
             <network network="twitter">
               <img class="hoverButton" src="@/assets/twitter_share.png"  style="width: 150px;left:125px;top:261px;position:relative;"/>
@@ -26,7 +26,6 @@
         </social-sharing>   
       </div>
     </div>
-
   </div>
 </template>
 
@@ -53,8 +52,9 @@ export default {
     })
     console.log('Response: ', response.data)
     response.data.result.Items.map((photo) => {
-      console.log(photo.sortKey)
-      this.images.push(`https://theme-park-photos-finalbucket-12gwfuzf9oaz0.s3-us-west-2.amazonaws.com/${photo.sortKey}`)
+      const photoURL = `https://${this.$appConfig.photos.finalBucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.sortKey}`
+      console.log('PhotoGallery adding: ', photoURL)
+      this.images.push(photoURL)
     })
   }
 }

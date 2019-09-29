@@ -47,11 +47,7 @@ export default {
               thumbnail: location.thumbnail,
               image: location.image,
               wait: null,
-              inService: null,
-              info: {
-                description: JSON.parse(location.info).description.S,
-                area: JSON.parse(location.info).area.S
-              }
+              inService: null
             }
             this.$store.commit('addRide', ride)
             break
@@ -85,3 +81,8 @@ export default {
   }
 }
 </script>
+<style>
+  body {
+    background: #00b0f3 !important;
+  }
+</style>

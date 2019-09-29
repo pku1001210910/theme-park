@@ -2,17 +2,20 @@
   <div id="ride">
     <b-card 
       :title="ride.name"
-      :sub-title="ride.info.area"
-      :img-src="ride.info.image"
+      :sub-title="$t('words.description')"
+      :img-src="ride.image"
       img-alt="Image"
       img-top
       tag="article"
-      class="mb-2"
+      class="m-2"
       style="max-width: 50rem;"
     >
       <b-card-text>{{ $t(`rideDescriptions.${ride.id}`) }}</b-card-text>
-      <img :src="image" />
-      <b-button :disabled="image !== ''" @click="$refs.file.click()" block href="#" variant="primary"  type="file">{{ $t('phrases.addPhoto') }}</b-button>
+      <img :src="image" class="mt-4"/>
+      <!-- This button is hidden if module 4 hasn't been started yet -->
+      <div id="addPhoto" v-if="$appConfig.photos.uploadURL !== ''">
+        <b-button :disabled="image !== ''" @click="$refs.file.click()" block href="#" variant="primary"  type="file">{{ $t('phrases.addPhoto') }}</b-button>
+      </div>
       <input id="file" accept="image/jpeg" type="file" ref="file" style="display: none" @change="onFileChange"/> 
     </b-card>
   </div>
@@ -28,11 +31,7 @@ export default {
       ride: {
         id: null,
         name: null,
-        info: {
-          image: 'null',
-          description: null,
-          area: null
-        },
+        image: 'null',
         slide: 0,
         sliding: null
       }
@@ -46,15 +45,7 @@ export default {
       const ride = this.rides.find((ride) => (ride.id === this.$route.params.rideId))
       this.ride.id = ride.id
       this.ride.name = ride.name
-      this.ride.info.image = ride.image
-      this.ride.info.description = ride.info.description
-      this.ride.info.area = ride.info.area
-    },
-    onSlideStart (slide) {
-      this.sliding = true
-    },
-    onSlideEnd (slide) {
-      this.sliding = false
+      this.ride.image = ride.image
     },
     makeToast (title, body, variant = 'success') {
       this.$bvToast.toast(body, {
@@ -137,5 +128,8 @@ img {
   margin: auto;
   display: block;
   margin-bottom: 10px;
+}
+.spacer {
+    margin-top: 40px; 
 }
 </style>
