@@ -27,9 +27,9 @@
             <div :key="ride.wait">
               <b-button variant="light" router-link :to="'/ride/' + ride.id">
                 <b-media>
-                  <b-img slot="aside" :src="ride.thumbnail" width="64" alt="placeholder"></b-img>
+                  <b-img slot="aside" :src="ride.thumbnail" width="64"></b-img>
                   <div v-show="ride.inService"><b-badge :variant="getVariantFromWait(ride.wait)">{{ ride.wait }} {{ $t("words.mins") }}</b-badge></div>
-                  <div v-show="ride.inService===false"><b-badge  variant="danger">Out of service</b-badge></div>
+                  <div v-show="ride.inService===false"><b-badge  variant="danger">{{ $t("phrases.outOfService") }}</b-badge></div>
                   <h6>{{ ride.name }}</h6>
                 </b-media>
               </b-button>

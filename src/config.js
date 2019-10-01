@@ -25,9 +25,9 @@ export const appConfig = {
   photos: {
     uploadURL: '',
     galleryURL: '',
-    finalBucketName: 'theme-park-photos-finalbucket-XXXXXXXX'
+    finalBucketName: ''
   },
-  // STATIC - You don't need to change anything below this comment.
+  // STATIC - You don't need to modify anything below this comment.
   images: {
     parkMapURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-map-large.jpg',
     logoURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-logo-150.png'

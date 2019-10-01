@@ -1,15 +1,13 @@
 <template>
   <div id="ride">
+    <!-- Ride details -->
     <b-card 
-      :title="ride.name"
-      :sub-title="$t('words.description')"
-      :img-src="ride.image"
-      img-alt="Image"
-      img-top
-      tag="article"
       class="m-2"
       style="max-width: 50rem;"
     >
+      <b-card-img-lazy :src="ride.image"></b-card-img-lazy>
+      <b-card-text><h3>{{ ride.name }}</h3></b-card-text>
+      <b-card-text><h6>{{ $t('words.description') }}</h6></b-card-text>
       <b-card-text>{{ $t(`rideDescriptions.${ride.id}`) }}</b-card-text>
       <img :src="image" class="mt-4"/>
       <!-- This button is hidden if module 4 hasn't been started yet -->
@@ -18,6 +16,19 @@
       </div>
       <input id="file" accept="image/jpeg" type="file" ref="file" style="display: none" @change="onFileChange"/> 
     </b-card>
+    <!-- Wait time information -->
+    <div id="waitTimeCard">
+      <div v-show="ride.inService===true">
+        <b-card bg-variant="primary" text-variant="white" :header="$t('phrases.currentWaitTime')" class="m-2 text-center">
+          <h3>{{ ride.wait }} {{ $t("words.mins") }}</h3>
+        </b-card>
+      </div>
+      <div v-show="ride.inService===false">
+        <b-card bg-variant="danger" text-variant="white" :header="$t('phrases.currentWaitTime')" class="m-2 text-center">
+          <h3>{{ $t("phrases.outOfService") }}</h3>
+        </b-card>  
+      </div>  
+      </div>  
   </div>
 </template>
 
@@ -32,8 +43,8 @@ export default {
         id: null,
         name: null,
         image: 'null',
-        slide: 0,
-        sliding: null
+        inService: null,
+        wait: 0
       }
     }
   },
@@ -46,6 +57,8 @@ export default {
       this.ride.id = ride.id
       this.ride.name = ride.name
       this.ride.image = ride.image
+      this.ride.inService = ride.inService
+      this.ride.wait = ride.wait
     },
     makeToast (title, body, variant = 'success') {
       this.$bvToast.toast(body, {

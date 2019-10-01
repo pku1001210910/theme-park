@@ -13,10 +13,7 @@
       >
         <social-sharing :url="image"
           title="I completed the AWS Serverless Theme Park Workshop!"
-          description="Wow!"
-          quote="Me on Innovator Island"
           hashtags="aws serverless reInvent2019"
-          twitter-user="jbesw"
           inline-template>
           <div>
             <network network="twitter">
@@ -52,7 +49,7 @@ export default {
     })
     console.log('Response: ', response.data)
     response.data.result.Items.map((photo) => {
-      const photoURL = `https://${this.$appConfig.photos.finalBucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.sortKey}`
+      const photoURL = `https://${this.$appConfig.photos.finalBucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.objectName}`
       console.log('PhotoGallery adding: ', photoURL)
       this.images.push(photoURL)
     })

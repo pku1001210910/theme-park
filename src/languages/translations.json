@@ -10,7 +10,9 @@
     "phrases": {
       "addPhoto": "Add ride photo",
       "yourGallery": "Your photo gallery",
-      "selectLanguage": "Select language:"
+      "selectLanguage": "Select language:",
+      "currentWaitTime": "Current wait time",
+      "outOfService": "Out of service"
     },
     "rideDescriptions": {
       "null": "Loading...",
