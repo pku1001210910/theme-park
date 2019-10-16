@@ -70,7 +70,7 @@ export default {
       // attemped this module yet, so don't initalize.
       if (this.$appConfig.api.URL === '') return
 
-      const response = await axios.get(`${this.$appConfig.api.URL}/InitState/`)
+      const response = await axios.get(this.$appConfig.api.URL)
       console.log('ParkMap: ', response)
       this.initState(response.data.result.Items)
     } catch (err) {
