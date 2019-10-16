@@ -21,36 +21,44 @@ export default {
     ParkAlert
   },
   methods: {
-    addLocations: function (locations) {
-      locations.map(location => {
-        // Don't process items that aren't locations
-        if (location.partitionKey !== 'locations') return
-        const key = location.sortKey.split('-')[0]
+    initState: function (items) {
+      let initRideTimes
+      items.map(item => {
+        // Initial ride time valus - store until locations populaterd
+        if (item.partitionKey === 'config' && item.message) {
+          initRideTimes = item.message
+        }
+        if (item.partitionKey !== 'locations') return
+        const key = item.sortKey.split('-')[0]
         switch (key) {
           // Facilities
           case 'facility':
             this.$store.commit('addFacility', {
-              id: location.sortKey,
-              name: location.name,
-              lat: JSON.parse(location.map).lat.N,
-              lng: JSON.parse(location.map).lng.N,
-              type: location.type
+              id: item.sortKey,
+              name: item.name,
+              lat: JSON.parse(item.map).lat.N,
+              lng: JSON.parse(item.map).lng.N,
+              type: item.type
             })
             break
           // Rides
           case 'ride':
             const ride = {
-              id: location.sortKey,
-              name: location.name,
-              lat: JSON.parse(location.map).lat.N,
-              lng: JSON.parse(location.map).lng.N,
-              thumbnail: location.thumbnail,
-              image: location.image,
+              id: item.sortKey,
+              name: item.name,
+              lat: JSON.parse(item.map).lat.N,
+              lng: JSON.parse(item.map).lng.N,
+              thumbnail: item.thumbnail,
+              image: item.image,
               wait: null,
               inService: null
             }
             this.$store.commit('addRide', ride)
             break
+        }
+        // Now add init ride times
+        if (initRideTimes) {
+          this.$store.commit('updateRideTimes', initRideTimes)
         }
         this.$store.commit('setInitialized')
       })
@@ -59,22 +67,12 @@ export default {
   mounted: async function () {
     try {
       // For the workshop, if this isn't in the config, the user has not
-      // attemped this module yet, so hide the feature.
+      // attemped this module yet, so don't initalize.
+      if (this.$appConfig.api.URL === '') return
 
-      if (this.$appConfig.api.locationsURL === '') return
-      const response = await axios.get(this.$appConfig.api.locationsURL)
+      const response = await axios.get(`${this.$appConfig.api.URL}/InitState/`)
       console.log('ParkMap: ', response)
-      this.addLocations(response.data.result.Items)
-
-      // Part c of the same module - provides instant wait times by
-      // initializing from the database.
-
-      if (this.$appConfig.initApi.url === '') return
-      const timesResponse = await axios.get(this.$appConfig.initApi.url)
-      console.log('InitWaitTimes: ', timesResponse)
-
-      const msg = timesResponse.data.result.Items[0].message
-      this.$store.commit('updateRideTimes', msg)
+      this.initState(response.data.result.Items)
     } catch (err) {
       console.error(err)
     }

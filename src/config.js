@@ -8,20 +8,17 @@
 
 */
 export const appConfig = {
-  // MODULE 2- BACKEND
+  // MODULE 1- BACKEND
   api: {
-    locationsURL: ''
+    URL: ''
   },
-  // MODULE 3 - REALTIME
+  // MODULE 2 - REALTIME
   iot: {
     poolId: '', // 'YourCognitoIdentityPoolId'
     host: '', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
     region: 'us-west-2' // 'YourAwsRegion', e.g. 'us-east-1'
   },
-  initApi: {
-    url: ''
-  },
-  // MODULE 4 - PHOTOS
+  // MODULE 3 - PHOTOS
   photos: {
     uploadURL: '',
     galleryURL: '',
