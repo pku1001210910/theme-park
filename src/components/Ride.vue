@@ -11,7 +11,7 @@
       <b-card-text>{{ $t(`rideDescriptions.${ride.id}`) }}</b-card-text>
       <img :src="image" class="mt-4"/>
       <!-- This button is hidden if module 4 hasn't been started yet -->
-      <div id="addPhoto" v-if="$appConfig.photos.uploadURL !== ''">
+      <div id="addPhoto" v-if="$appConfig.getUploadURL !== ''">
         <b-button :disabled="image !== ''" @click="$refs.file.click()" block href="#" variant="primary"  type="file">{{ $t('phrases.addPhoto') }}</b-button>
       </div>
       <input id="file" accept="image/jpeg" type="file" ref="file" style="display: none" @change="onFileChange"/> 
@@ -94,7 +94,7 @@ export default {
       reader.readAsDataURL(file)
     },
     uploadImage: async function () {
-      const API_ENDPOINT = this.$appConfig.photos.uploadURL
+      const API_ENDPOINT = this.$appConfig.getUploadURL
       // Get the presigned URL
       const response = await axios({
         method: 'GET',

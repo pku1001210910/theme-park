@@ -49,7 +49,7 @@ export default {
     })
     console.log('Response: ', response.data)
     response.data.result.Items.map((photo) => {
-      const photoURL = `https://${this.$appConfig.photos.finalBucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.objectName}`
+      const photoURL = `https://${photo.bucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.objectKey}`
       console.log('PhotoGallery adding: ', photoURL)
       this.images.push(photoURL)
     })

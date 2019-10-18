@@ -9,9 +9,7 @@
 */
 export const appConfig = {
   // MODULE 1- BACKEND
-  api: {
-    URL: ''
-  },
+  initStateAPI: 'https://bjnqd28nwg.execute-api.us-west-2.amazonaws.com/Prod/InitState/',
   // MODULE 2 - REALTIME
   iot: {
     poolId: '', // 'YourCognitoIdentityPoolId'
@@ -19,10 +17,9 @@ export const appConfig = {
     region: 'us-west-2' // 'YourAwsRegion', e.g. 'us-east-1'
   },
   // MODULE 3 - PHOTOS
+  getUploadURL: 'https://bjnqd28nwg.execute-api.us-west-2.amazonaws.com/Prod/Upload',
   photos: {
-    uploadURL: '',
-    galleryURL: '',
-    finalBucketName: ''
+    galleryURL: ''
   },
   // STATIC - You don't need to modify anything below this comment.
   images: {
