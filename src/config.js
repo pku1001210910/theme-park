@@ -9,19 +9,19 @@
 */
 export const appConfig = {
   // MODULE 1- BACKEND
-  initStateAPI: 'https://bjnqd28nwg.execute-api.us-west-2.amazonaws.com/Prod/InitState/',
+  initStateAPI: '', // e.g. https://12abcdef89.execute-api.us-west-2.amazonaws.com/Prod/InitState/
   // MODULE 2 - REALTIME
   iot: {
-    poolId: '', // 'YourCognitoIdentityPoolId'
-    host: '', // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
-    region: 'us-west-2' // 'YourAwsRegion', e.g. 'us-east-1'
+    poolId: '', // e.g. 'us-west-2:1abcdef-1234-abcd-1234-abcde123456'
+    host: '', // e.g. 'ab12ab12abcde.iot.us-east-1.amazonaws.com'
+    region: '' // e.g. 'us-west-1'
   },
   // MODULE 3 - PHOTOS
-  getUploadURL: 'https://bjnqd28nwg.execute-api.us-west-2.amazonaws.com/Prod/Upload',
-  photos: {
-    galleryURL: ''
-  },
+  photoUploadURL: '', // e.g. https://12abcdfg89.execute-api.us-west-2.amazonaws.com/Prod/Upload
+
+  //
   // STATIC - You don't need to modify anything below this comment.
+  //
   images: {
     parkMapURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-map-large.jpg',
     logoURL: 'https://d15l97sovqpx31.cloudfront.net/images/theme-park-logo-150.png'

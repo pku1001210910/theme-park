@@ -3,15 +3,15 @@
     <b-card :title="$t('phrases.yourGallery')"/>      
                   
     <div>
-      <gallery :images="images" :index="index" @close="index = null"></gallery>
+      <gallery :photos="photos" :index="index" @close="index = null"></gallery>
       <div
         class="parkPhoto"
-        v-for="(image, imageIndex) in images"
-        :key="imageIndex"
-        @click="index = imageIndex"
-        :style="{ backgroundImage: 'url(' + image + ')', width: '400px', height: '300px' }"
+        v-for="(photo, photoIndex) in photos"
+        :key="photoIndex"
+        @click="index = photoIndex"
+        :style="{ backgroundImage: 'url(' + photo + ')', width: '400px', height: '300px' }"
       >
-        <social-sharing :url="image"
+        <social-sharing :url="photo"
           title="I completed the AWS Serverless Theme Park Workshop!"
           hashtags="aws serverless reInvent2019"
           inline-template>
@@ -28,7 +28,6 @@
 
 <script>
 import VueGallery from 'vue-gallery'
-import axios from 'axios'
 export default {
   name: 'PhotoGallery',
   components: {
@@ -36,23 +35,14 @@ export default {
   },
   data () {
     return {
-      images: [],
       index: null
     }
   },
-  async mounted () {
-    if (this.$appConfig.photos.galleryURL === '') return
-    const API_ENDPOINT = this.$appConfig.photos.galleryURL
-    const response = await axios({
-      method: 'GET',
-      url: API_ENDPOINT
-    })
-    console.log('Response: ', response.data)
-    response.data.result.Items.map((photo) => {
-      const photoURL = `https://${photo.bucketName}.s3-${this.$appConfig.iot.region}.amazonaws.com/${photo.objectKey}`
-      console.log('PhotoGallery adding: ', photoURL)
-      this.images.push(photoURL)
-    })
+  computed: {
+    photos () {
+      console.log(this.$store.getters.getPhotos)
+      return this.$store.getters.getPhotos
+    }
   }
 }
 </script>

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const state = {
   rides: [],
   facilities: [],
+  photos: [],
   parkAlert: null,
   initialized: false
 }
@@ -15,6 +16,7 @@ const getters = {
   isInitialized: (state) => state.initialized,
   getParkAlert: (state) => state.parkAlert,
   getRides: (state) => state.rides,
+  getPhotos: (state) => state.photos,
   getFacilities: (state) => state.facilities
 }
 
@@ -35,13 +37,15 @@ const mutations = {
   addRide (state, ride) {
     state.rides.push(ride)
   },
+  addPhoto (state, photo) {
+    state.photos.push(photo)
+  },
   addFacility (state, facility) {
     state.facilities.push(facility)
   },
   updateRideTimes (state, rideTimes) {
     // Convert list of waittimes msg to JSON and iterate
     JSON.parse(rideTimes).map(rideTime => {
-      console.log(rideTime)
       // Find matching ride and update wait time.
       for (let i = 0; i < state.rides.length; i++) {
         if (state.rides[i].id === rideTime.rideId) {
@@ -51,8 +55,7 @@ const mutations = {
         }
       }
     })
-
-    console.log('updateRideTimes: ', state.rides)
+    // console.log('updateRideTimes: ', state.rides)
   }
 }
 

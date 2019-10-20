@@ -28,6 +28,11 @@ export default {
         if (item.partitionKey === 'config' && item.message) {
           initRideTimes = item.message
         }
+        // Photos
+        if (item.partitionKey === 'user-photo') {
+          this.$store.commit('addPhoto', item.URL)
+        }
+        // Other data
         if (item.partitionKey !== 'locations') return
         const key = item.sortKey.split('-')[0]
         switch (key) {

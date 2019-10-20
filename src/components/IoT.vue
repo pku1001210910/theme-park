@@ -84,12 +84,15 @@
 
       // A message has arrived - parse to determine topic
       mqttClient.on('message', function (topic, payload) {
+        console.log('IoT::onMessage: ', topic)
         const msg = JSON.parse(payload.toString())
         console.log('Message: ', msg)
-        console.log('IoT::onMessage: ', topic)
+
         if (topic === alertsTopic) {
-          console.log('Message: ', msg)
           _store.commit('setParkAlert', msg)
+          if (msg.type === 'photoProcessed') {
+            _store.commit('addPhoto', msg.message.URL)
+          }
           return
         }
         // ride updates use the ridesTopic

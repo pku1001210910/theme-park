@@ -10,8 +10,8 @@
       <b-card-text><h6>{{ $t('words.description') }}</h6></b-card-text>
       <b-card-text>{{ $t(`rideDescriptions.${ride.id}`) }}</b-card-text>
       <img :src="image" class="mt-4"/>
-      <!-- This button is hidden if module 4 hasn't been started yet -->
-      <div id="addPhoto" v-if="$appConfig.getUploadURL !== ''">
+      <!-- This button is hidden if module 3 hasn't been started yet -->
+      <div id="addPhoto" v-if="$appConfig.photoUploadURL !== ''">
         <b-button :disabled="image !== ''" @click="$refs.file.click()" block href="#" variant="primary"  type="file">{{ $t('phrases.addPhoto') }}</b-button>
       </div>
       <input id="file" accept="image/jpeg" type="file" ref="file" style="display: none" @change="onFileChange"/> 

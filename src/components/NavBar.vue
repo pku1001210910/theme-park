@@ -18,7 +18,7 @@
           </b-dropdown>    
         </b-navbar-nav>
         <!-- Photo Gallery icon -->
-        <b-button v-if="$appConfig.photos.galleryURL !== ''" variant="outline-light" class="btn  ml-2 my-2 my-sm-0" to="/photo-gallery" size="md">
+        <b-button v-if="$store.getters.getPhotos.length !== 0" variant="outline-light" class="btn  ml-2 my-2 my-sm-0" to="/photo-gallery" size="md">
           <font-awesome-icon icon="images" size="2x"/>
         </b-button>
     </b-navbar>
