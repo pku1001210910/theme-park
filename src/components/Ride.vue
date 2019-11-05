@@ -94,7 +94,7 @@ export default {
       reader.readAsDataURL(file)
     },
     uploadImage: async function () {
-      const API_ENDPOINT = this.$appConfig.getUploadURL
+      const API_ENDPOINT = this.$appConfig.photoUploadURL
       // Get the presigned URL
       const response = await axios({
         method: 'GET',
