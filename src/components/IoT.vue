@@ -6,7 +6,6 @@
   const AWS = require('aws-sdk')
   const AWSIoTData = require('aws-iot-device-sdk')
   const ridesTopic = 'theme-park-rides'
-  const alertsTopic = 'theme-park-alerts'
 
   export default {
     name: 'IoT',
@@ -73,7 +72,6 @@
       mqttClient.on('connect', function () {
         console.log('mqttClient connected')
         mqttClient.subscribe(ridesTopic)
-        mqttClient.subscribe(alertsTopic)
       })
 
       // Attempt to reconnect in the event of any error
@@ -85,19 +83,21 @@
       // A message has arrived - parse to determine topic
       mqttClient.on('message', function (topic, payload) {
         console.log('IoT::onMessage: ', topic)
-        const msg = JSON.parse(payload.toString())
-        console.log('Message: ', msg)
+        const payloadEnvelope = JSON.parse(payload.toString())
+        
+        console.log('Message: ', payloadEnvelope)
 
-        if (topic === alertsTopic) {
-          _store.commit('setParkAlert', msg)
-          if (msg.type === 'photoProcessed') {
-            _store.commit('addPhoto', msg.message.URL)
-          }
-          return
+        if (payloadEnvelope.type === 'alert') {
+          _store.commit('setParkAlert', JSON.parse(payloadEnvelope.msg))
         }
+
+        if (payloadEnvelope.type === 'photoProcessed') {
+          _store.commit('addPhoto', payloadEnvelope.msg.URL)
+        }
+
         // ride updates use the ridesTopic
-        if (topic === ridesTopic) {
-          _store.commit('updateRideTimes', msg)
+        if (payloadEnvelope.type === 'summary') {
+          _store.commit('updateRideTimes', payloadEnvelope.msg)
         }
       })
     }
