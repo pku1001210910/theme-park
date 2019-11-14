@@ -23,6 +23,7 @@
 
       console.log('IoT mounted')
       const _store = this.$store
+      // const _t = this.$t
 
       const clientId = 'theme-park-client-' + (Math.floor((Math.random() * 100000) + 1))
       AWS.config.region = AWSConfiguration.region
@@ -84,17 +85,20 @@
       mqttClient.on('message', function (topic, payload) {
         console.log('IoT::onMessage: ', topic)
         const payloadEnvelope = JSON.parse(payload.toString())
-        
         console.log('Message: ', payloadEnvelope)
 
         if (payloadEnvelope.type === 'alert') {
           _store.commit('setParkAlert', JSON.parse(payloadEnvelope.msg))
         }
-
         if (payloadEnvelope.type === 'photoProcessed') {
-          _store.commit('addPhoto', payloadEnvelope.msg.URL)
+          console.log('Photo processed: ', payloadEnvelope.message.URL)
+          _store.commit('addPhoto', payloadEnvelope.message.URL)
+          _store.commit('setParkAlert', {
+            title: 'Photo processed',
+            type: 'info',
+            confirmButtonText: 'OK'
+          })
         }
-
         // ride updates use the ridesTopic
         if (payloadEnvelope.type === 'summary') {
           _store.commit('updateRideTimes', payloadEnvelope.msg)

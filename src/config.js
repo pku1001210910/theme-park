@@ -18,7 +18,6 @@ export const appConfig = {
   },
   // MODULE 3 - PHOTOS
   photoUploadURL: '', // e.g. https://12abcdfg89.execute-api.us-west-2.amazonaws.com/Prod/Upload
-
   //
   // STATIC - You don't need to modify anything below this comment.
   //
